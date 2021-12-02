@@ -66,8 +66,16 @@ let addProject = (() => {
 
     }
 
+    let selectTest = (event) => {
+        let el = event.target;
 
-    return {projectDiv, clickProjectButton, clickDelProjectButton}
+        if(el.classList.contains("project-add")){
+            console.log("Hello this works")
+        }
+    };
+
+
+    return {projectDiv, clickProjectButton, clickDelProjectButton, selectTest}
 
 })();
 

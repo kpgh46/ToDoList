@@ -69,7 +69,7 @@ let addProject = (() => {
       
     }
 
-    let getDataId = (event) => {
+    let selectProject = (event) => {
         let el = event.target;
         let projectNodeList = document.querySelectorAll(".project-entry");
 
@@ -81,15 +81,11 @@ let addProject = (() => {
             console.log(projectNodeList);
 
         }
-
-            
-            
-
     }
 
 
 
-    return {addProjectButton, clickSubmitButton, deleteProjectButton, getDataId}
+    return {addProjectButton, clickSubmitButton, deleteProjectButton, selectProject}
 
 })();
 

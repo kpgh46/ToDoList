@@ -9,6 +9,7 @@ let addToDo = (() => {
     let addToDoButton = () => {
         let createNewToDoDiv = document.createElement("div");
         createNewToDoDiv.id = "new-todo-div";
+        
 
         let todoDivHeader = document.createElement("h3");
         todoDivHeader.textContent = "Add To Do:"
@@ -29,7 +30,7 @@ let addToDo = (() => {
         });
 
         let createTodoButton = document.createElement('button');
-        createTodoButton.textContent = "Create Button"
+        createTodoButton.textContent = "Add ToDo"
         createTodoButton.classList.add("small-div-button");
         createTodoButton.id = "create-todo";
         createNewToDoDiv.appendChild(createTodoButton);

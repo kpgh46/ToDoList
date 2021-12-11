@@ -1,82 +1,96 @@
-
-let container = document.querySelector("#container");
+let projectCount = 0;
 
 let addProject = (() => {
 
-    let projectDiv = () => {
+    let addProjectButton = () => {
 
-        //Small project div:
-        const createProject = document.createElement('div');
-        createProject.classList.add('create-project');
+        const createNewProjectDiv = document.createElement('div');
+        createNewProjectDiv.id = 'new-project-div';
 
-        //project header:
-        let projectNameHeader = document.createElement('h3');
-        projectNameHeader.textContent = "Project Name:"
+        const projectDivHeader = document.createElement('h3');
+        projectDivHeader.textContent = 'Project Name:';
+        projectDivHeader.classList.add('small-div-header');
 
-        //text field under header:
-        let projectTextField = document.createElement("input");
-        projectTextField.setAttribute("type", "text");
-        projectTextField.id = "project-textfield"
+        const projectNameField = document.createElement('input');
+        projectNameField.setAttribute('type', 'text');
+        projectNameField.setAttribute('label', 'Project Name');
+        projectNameField.setAttribute('placeholder', "Project Name");
+        projectNameField.classList.add('text-fields');
+        projectNameField.id = 'project-name-field'
 
-        let submitButton = document.createElement("button");
-        submitButton.textContent = "Create Project";
-        submitButton.setAttribute("type", "submit");
-        submitButton.classList.add("submit-button");
-        submitButton.id = "submit-project"
+        const projectSubmitBtn = document.createElement('button');
+        projectSubmitBtn.textContent = "Submit Project";
+        projectSubmitBtn.id = "project-submit";
+        projectSubmitBtn.classList.add('small-div-button');
 
-        //appending to small Div
-        createProject.appendChild(projectNameHeader);
-        createProject.appendChild(projectTextField);
-        createProject.appendChild(submitButton);
+        createNewProjectDiv.appendChild(projectDivHeader);
+        createNewProjectDiv.appendChild(projectNameField);
+        createNewProjectDiv.appendChild(projectSubmitBtn);
 
-        container.appendChild(createProject);
+        document.querySelector("#mainpage").appendChild(createNewProjectDiv);
+
     }
 
-    let clickProjectButton = (event)  =>{
-        let el = event.target
+    let clickSubmitButton = (event) => {
+        let el = event.target;
+        let newProject = document.querySelector("#new-project");
 
-        if(el.id === "submit-project"){
-            let x = document.querySelector("#project-textfield").value;
-            let newProjects = document.querySelector("#new-project");
-            let y = document.querySelector(".create-project");
+        // if e.target = project submit, take value from text field and create div in project list:
+        if (el.id === 'project-submit') {
 
-            //delete button
-            let delButton = document.createElement('button');
-            delButton.textContent = "-";
-            delButton.classList.add('del-button');
-            delButton.id = 'del-project'
-            
-            let newProjectDiv = document.createElement('div');
-            newProjectDiv.classList.add("project-add");
-            newProjectDiv.textContent = x;
-            y.remove();
-            newProjectDiv.appendChild(delButton);
-            newProjects.appendChild(newProjectDiv);
+            let projectName = document.querySelector("#project-name-field").value;
+            let projectDiv = document.createElement('div');
+            projectDiv.setAttribute("data-id", `${projectCount}`);
+            projectDiv.textContent = projectName;
+            projectDiv.classList.add('project-entry');
+            newProject.appendChild(projectDiv);
 
-        };
+            //create delete button
+            let projectDelBtn = document.createElement('button');
+            projectDelBtn.classList.add('del-button');
+            projectDelBtn.id = "project-del-button";
+            projectDelBtn.textContent = "X";    
+            projectDiv.appendChild(projectDelBtn);
+
+            //clear value and close new project window:
+            document.querySelector("#project-name-field").value = '';
+            document.querySelector("#new-project-div").remove();
+
+            projectCount++;
+        }
     }
 
-    let clickDelProjectButton = (event) => {
+    let deleteProjectButton = (event) => {
         let el = event.target;
 
-        if (el.id === "del-project"){
-            console.log("del button clicked");
+        if (el.id === 'project-del-button'){
             el.parentElement.remove();
         }
+      
+    }
+
+    let getDataId = (event) => {
+        let el = event.target;
+        let projectNodeList = document.querySelectorAll(".project-entry");
+
+        if (el.classList.contains("project-entry")){
+            projectNodeList.forEach(node => node.classList.remove('active'));
+
+            el.classList.add('active');
+
+            console.log(projectNodeList);
+
+        }
+
+            
+            
 
     }
 
-    let selectTest = (event) => {
-        let el = event.target;
-
-        if(el.classList.contains("project-add")){
-            console.log("Hello this works")
-        }
-    };
 
 
-    return {projectDiv, clickProjectButton, clickDelProjectButton, selectTest}
+    return {addProjectButton, clickSubmitButton, deleteProjectButton, getDataId}
 
 })();
 
-export {addProject}
+export { addProject };

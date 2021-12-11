@@ -1,19 +1,12 @@
-import testFunction from "./test";
-import {addProject} from "./project-button";
-import {addToDo} from "./todo-button";
+import { addProject } from "./project-button";
+import { addToDo } from "./todo-button";
 
+const addProjectbtn = document.querySelector("#add-project-button");
+const addToDoBtn = document.querySelector("#add-todo-button")
 
-let projectButton = document.querySelector("#project-button");
-let toDoButton = document.querySelector("#todo-button");
+addProjectbtn.addEventListener("click", addProject.addProjectButton);
 
-
-testFunction();
-
-
-//Event Listeners:
-projectButton.addEventListener("click", addProject.projectDiv);
-document.addEventListener("click", addProject.clickProjectButton);
-document.addEventListener("click", addProject.clickDelProjectButton);
-document.addEventListener("select", addProject.selectTest);
-toDoButton.addEventListener("click", addToDo.toDoDiv);
-document.addEventListener("click", addToDo.clickToDoButton);
+document.addEventListener("click", addProject.clickSubmitButton);
+document.addEventListener("click", addProject.deleteProjectButton);
+document.addEventListener("click", addProject.selectProject);
+addToDoBtn.addEventListener("click", addToDo.addToDoButton);

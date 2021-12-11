@@ -1,82 +1,48 @@
-let container = document.querySelector("#container");
+let dataId = 0;
 
 let addToDo = (() => {
 
     let capitalize = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    let toDoDiv = () => {
+    let addToDoButton = () => {
+        let createNewToDoDiv = document.createElement("div");
+        createNewToDoDiv.id = "new-todo-div";
 
-        // toDo pop up div:
-        const createToDo = document.createElement('div');
-        createToDo.classList.add('create-todo');
+        let todoDivHeader = document.createElement("h3");
+        todoDivHeader.textContent = "Add To Do:"
+        todoDivHeader.classList.add("small-div-header");
+        createNewToDoDiv.appendChild(todoDivHeader);
 
-        // toDo pop up header:
-        let toDoHeader = document.createElement('h3');
-        toDoHeader.textContent = "To Do:"
-        createToDo.appendChild(toDoHeader);
+        let todoFields = ["title", "description", "date", "priority"]
 
-        let toDoFields = ["title", "description", "duedate", "priority"];
-
-        // iterate fields and add input elements:
-        toDoFields.forEach(el => {
+        todoFields.forEach(field => {
             let section = document.createElement('input');
-            section.id = el;
-            section.classList.add('todoinput');
+            section.id = field;
+            section.classList.add('todo-Input');
             section.setAttribute("type", "text");
-            section.setAttribute("name", el);
-            let placetext = capitalize(el)
-            section.placeholder = placetext;
+            section.setAttribute("placeholder", capitalize(field));
 
-            createToDo.appendChild(section);
-
+            createNewToDoDiv.appendChild(section);
+            
         });
 
-        //append everything together:
-        let createToDoButton = document.createElement('button');
-        createToDoButton.textContent = "create button";
-        createToDoButton.classList.add("submit-button");
-        createToDoButton.id = "create-todo";
-        createToDo.appendChild(createToDoButton);
+        let createTodoButton = document.createElement('button');
+        createTodoButton.textContent = "Create Button"
+        createTodoButton.classList.add("small-div-button");
+        createTodoButton.id = "create-todo";
+        createNewToDoDiv.appendChild(createTodoButton);
 
-        
-        container.appendChild(createToDo);
-    }
+        document.querySelector("#mainpage").appendChild(createNewToDoDiv);
 
-    // factory function to create todo object:
-    let toDoObject = (title, description, duedate, priority) => {
-        return {title,description,duedate,priority}
-    }
 
-    // when button is clicked, it pushes current values to "currentTodo" array:
-    let clickToDoButton = (event) => {
-        let el = event.target;
-
-        if(el.id === "create-todo"){
-            let title = document.querySelector("#title").value;
-            let description = document.querySelector("#description").value;
-            let duedate = document.querySelector("#duedate").value;
-            let priority = document.querySelector("#priority").value;
-
-            let newToDoObject = toDoObject(title,description,duedate,priority);
-
-            let toDoDiv = document.createElement('div');
-            toDoDiv.classList.add("todo-add")
-            toDoDiv.textContent = `Title: ${newToDoObject.title} -- Description: ${newToDoObject.description} -- Due Date: ${newToDoObject.duedate} -- Priority: ${newToDoObject.priority}`;
-            right.appendChild(toDoDiv);
-            
-            document.querySelector("#title").value = '';
-            document.querySelector("#description").value = '';
-            document.querySelector("#duedate").value = '';
-            document.querySelector("#priority").value = '';
-        }
-        
     }
 
 
-    return { toDoDiv, clickToDoButton, };
-    
+
+    return {addToDoButton}
+
 })();
 
-export {addToDo};
+export { addToDo }

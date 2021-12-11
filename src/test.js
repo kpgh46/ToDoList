@@ -3,7 +3,7 @@ let testFunction = () => {
 
     let anotherDiv = document.createElement('div');
 
-    anotherDiv.textContent = " - December 1"
+    anotherDiv.textContent = " - December 4"
 
     banner.appendChild(anotherDiv);
 }

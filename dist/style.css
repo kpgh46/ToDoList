@@ -1,124 +1,112 @@
+body{
+    background-color: lightgrey;
+}
+
 #banner {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   background-color: orange;
-   color:white;
-   height: 60px
+    text-align: center  ;
+    background-color: orange;
 }
 
-#container {
-    color: green;
+#mainpage {
     display: flex;
-    height:600px;
-}
-
-#left {
-    border: 1px solid red;
-    flex-grow: 1;
-    
-}
-
-#right {
-    flex-grow: 3;
     border: 1px solid black;
+    margin-top: 40px;
+    margin-left: 10%;
+    margin-right: 10%;
+    height:800px;
 }
 
-#header {
+#project-list {
+    border: 1px solid black;
+    flex-grow: 1;
+    display:flex;
+    flex-direction: column;
+}
+
+#todo-list {
+    border: 1px solid black;
+    flex-grow: 2;
+}
+
+.mainpage-header {
     display: flex;
-    margin-left: 20px;
+    border: 1px solid black;
+    height: 40px;
+    font-size: xx-large;
+    margin: 10px;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
-.button {
-    height: 30px;
-    margin-left: 20px;
-    width: 30px;
-    border-radius: 30px;
-    
+.add-button {
+    border-radius: 20px;
+    height: 70%;
+    width: 29px;
 }
 
-.create-project {
-    width: 300px;
-    height: 120px;
-    padding: 20px;
-  
+#new-project-div {
+    height: 170px;
+    width:330px;
+    border: 1px black solid;
     position: absolute;
-    top: 50%;
-    left: 50%;
-  
-    margin: -70px 0 0 -170px;
-    border: 1px solid black;
-
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: orange;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    background-color: orange;
-    color: white;
 }
 
-.submit-button {
-    color:white;
-    font-weight: bolder;
-    margin-top: 15px;
+.text-fields{
+    width: 50%;
+
+}
+
+.small-div-button{
+    margin-top: 10px;
     border-radius: 10px;
-    height: 40px;
-    width: auto;
-    background-color: green;
+    height: 28px;
+    width: 120px;;
 }
 
-#project-textfield {
-    border-radius: 3px;
-}
-
-.project-add {
-    height: 70px;
+.project-entry {
+    height: 80px;
     width: auto;
-    border:1px solid yellowgreen;
+    border: 1px solid black;
     display: flex;
     align-items: center;
-    padding-left: 20px;
-    font-size: x-large;
-    color: black;
+    font-size: xx-large;
+    padding-left: 12px;
 }
 
 .del-button {
-    display:      block;
-    margin-left:  auto;
-    margin-right: 8px;
-
+    display: block;
+    margin-left: auto;
+    margin-right: 12px;
+    border-radius: 10px;
+    width: 23px;
 }
 
-.create-todo {
+.project-entry:hover {
+    background-color: orange;
+}
 
-    width: 400px;
-    height: 220px;
-    padding: 20px;
-  
+.active {
+    background-color: orange;
+}
+
+#new-todo-div {
+    height: 210px;
+    width:330px;
+    border: 1px black solid;
     position: absolute;
-    top: 50%;
-    left: 50%;
-  
-    margin: -70px 0 0 -170px;
-    border: 1px solid black;
-
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: orange;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    background-color: orange;
-    color: white;
-}
-
-.todo-add {
-    height: 70px;
-    width: auto;
-    border:1px solid yellowgreen;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    font-size: large;
-    color: black;
 }

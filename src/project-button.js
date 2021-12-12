@@ -1,8 +1,11 @@
+import { addToDo } from "./todo-button";
+
 let projectCount = 0;
 
 let addProject = (() => {
 
     let addProjectButton = () => {
+        document.querySelector("#add-todo-button").disabled = true;
 
         const createNewProjectDiv = document.createElement('div');
         createNewProjectDiv.id = 'new-project-div';
@@ -38,25 +41,40 @@ let addProject = (() => {
         // if e.target = project submit, take value from text field and create div in project list:
         if (el.id === 'project-submit') {
 
-            let projectName = document.querySelector("#project-name-field").value;
-            let projectDiv = document.createElement('div');
-            projectDiv.setAttribute("data-id", `${projectCount}`);
-            projectDiv.textContent = projectName;
-            projectDiv.classList.add('project-entry');
-            newProject.appendChild(projectDiv);
+            let test2 = document.querySelector("#project-name-field").value;
+            let test1 = document.querySelector("#project-name-field");
 
-            //create delete button
-            let projectDelBtn = document.createElement('button');
-            projectDelBtn.classList.add('del-button');
-            projectDelBtn.id = "project-del-button";
-            projectDelBtn.textContent = "X";    
-            projectDiv.appendChild(projectDelBtn);
+            if (test2 === '') {
 
-            //clear value and close new project window:
-            document.querySelector("#project-name-field").value = '';
-            document.querySelector("#new-project-div").remove();
+                addToDo.noValueError(test1);
 
-            projectCount++;
+                } else {
+
+                    let projectName = document.querySelector("#project-name-field").value;
+                    let projectDiv = document.createElement('div');
+                    projectDiv.setAttribute("data-id", `${projectCount}`);
+                    projectDiv.textContent = projectName;
+                    projectDiv.classList.add('project-entry');
+                    newProject.appendChild(projectDiv);
+
+                    //create delete button
+                    let projectDelBtn = document.createElement('button');
+                    projectDelBtn.classList.add('del-button');
+                    projectDelBtn.id = "project-del-button";
+                    projectDelBtn.textContent = "X";    
+                    projectDiv.appendChild(projectDelBtn);
+
+                    //clear value and close new project window:
+                    document.querySelector("#project-name-field").value = '';
+                    document.querySelector("#new-project-div").remove();
+
+                    projectCount++;
+
+                    document.querySelector("#add-todo-button").disabled = false;
+                
+                }
+            
+            
         }
     }
 

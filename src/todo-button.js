@@ -7,6 +7,8 @@ let addToDo = (() => {
     }
 
     let addToDoButton = () => {
+        document.querySelector("#add-project-button").disabled = true;
+
         let createNewToDoDiv = document.createElement("div");
         createNewToDoDiv.id = "new-todo-div";
 
@@ -37,6 +39,7 @@ let addToDo = (() => {
         createNewToDoDiv.appendChild(createTodoButton);
 
         document.querySelector("#mainpage").appendChild(createNewToDoDiv);
+        
     }
 
     //need to create timeout feature
@@ -56,8 +59,7 @@ let addToDo = (() => {
     let submitToDo = (event) => {
 
         let el = event.target;
-        let header = document.querySelector('#todo-div-header');
-
+        
         if (el.id === "create-todo"){
 
             let title1 = document.querySelector("#title").value;
@@ -68,7 +70,8 @@ let addToDo = (() => {
 
             if (title1 === '' || description2 === '' || date3 === '' || priority4 === ''){
                 noValueError(test);
-            }else{
+                }
+                else{
 
                 let newToDo = (title,description,date, priority) => {
                     return {title, description, date, priority}
@@ -97,6 +100,7 @@ let addToDo = (() => {
                 document.querySelector("#new-todo").appendChild(toDoDivList);
 
                 document.querySelector("#new-todo-div").remove();
+                document.querySelector("#add-project-button").disabled = false;
             };
             
             
@@ -104,9 +108,7 @@ let addToDo = (() => {
 
     }
 
-
-
-    return {addToDoButton, submitToDo}
+    return {addToDoButton, submitToDo, noValueError}
 
 })();
 

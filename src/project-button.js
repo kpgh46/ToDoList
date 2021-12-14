@@ -1,8 +1,18 @@
 import { addToDo } from "./todo-button";
 
 let projectCount = 0;
+let currentProjectCount = 0;
 
 let addProject = (() => {
+
+    let disableToDo = (count) => {
+        let btnToDo = document.querySelector("#add-todo-button");
+        if (count === 0 ) {
+            btnToDo.disabled = true;
+        } else {
+            btnToDo.disabled = false;
+        }
+    }
 
     let addProjectButton = () => {
         document.querySelector("#add-todo-button").disabled = true;
@@ -69,13 +79,14 @@ let addProject = (() => {
                     document.querySelector("#new-project-div").remove();
 
                     projectCount++;
+                    currentProjectCount++;
+                    console.log(currentProjectCount);
 
                     document.querySelector("#add-todo-button").disabled = false;
                 
                 }
-            
-            
         }
+        addToDo(currentProjectCount);
     }
 
     let deleteProjectButton = (event) => {
@@ -83,6 +94,8 @@ let addProject = (() => {
 
         if (el.id === 'project-del-button'){
             el.parentElement.remove();
+            currentProjectCount--
+            disableToDo(currentProjectCount);
         }
       
     }
@@ -96,15 +109,15 @@ let addProject = (() => {
 
             el.classList.add('active');
 
-            console.log(projectNodeList);
-
         }
     }
 
 
 
-    return {addProjectButton, clickSubmitButton, deleteProjectButton, selectProject}
+
+
+    return {addProjectButton, clickSubmitButton, deleteProjectButton, selectProject, disableToDo}
 
 })();
 
-export { addProject };
+export { addProject, projectCount,currentProjectCount };

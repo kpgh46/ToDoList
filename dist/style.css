@@ -81,6 +81,16 @@ body{
     padding-left: 12px;
 }
 
+.todo-entry {
+    height: 80px;
+    width: auto;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    font-size: xx-large;
+    padding-left: 12px;
+}
+
 .del-button {
     display: block;
     margin-left: auto;
@@ -113,4 +123,27 @@ body{
 
 .mini-div {
     font-size: medium;
+}
+
+#title-todo {
+    align-self: flex-start;
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+#description-todo{
+    font-size: large;
+    margin-left: 30px;
+
+}
+
+#date-todo{
+    font-size: large;
+    margin-left: 30px;
+}
+
+#priority-todo{
+    font-size: large;
+    margin-left: 30px;
+
 }

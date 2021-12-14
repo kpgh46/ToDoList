@@ -12,7 +12,6 @@ let addToDo = (() => {
         let createNewToDoDiv = document.createElement("div");
         createNewToDoDiv.id = "new-todo-div";
 
-
         let todoDivHeader = document.createElement("h3");
         todoDivHeader.textContent = "Add To Do:"
         todoDivHeader.classList.add("small-div-header");
@@ -78,24 +77,35 @@ let addToDo = (() => {
                 }
                 
                 let toDoDivList = document.createElement('div');
-                toDoDivList.classList.add("project-entry");
+                toDoDivList.classList.add("todo-entry");
 
                 let toDoObject = newToDo(title1,description2,date3,priority4);
-                let toDoObjectArr = Object.values(toDoObject);
+                
+                let titleToDo = document.createElement("div");
+                titleToDo.textContent = toDoObject.title;
+                titleToDo.classList.add('mini-div')
+                titleToDo.id = "title-todo";
 
-                console.log(toDoObject);
-                console.log(Object.values(toDoObject));
-            
+                let descriptionToDo = document.createElement("div");
+                descriptionToDo.textContent = `Description: ${toDoObject.description}`;
+                descriptionToDo.classList.add('mini-div');
+                descriptionToDo.id = "description-todo"
 
-                Object.entries(toDoObject).forEach(el => {
+                let dateToDo = document.createElement("div");
+                dateToDo.textContent = `Date: ${toDoObject.date}`;
+                dateToDo.classList.add('mini-div');
+                dateToDo.id = "date-todo";
 
-                    let miniDiv = document.createElement('div');
-                    miniDiv.classList.add('mini-div');
-                    miniDiv.textContent = el;
+                let priorityToDo = document.createElement("div");
+                priorityToDo.textContent = `Priority: ${toDoObject.priority}`;
+                priorityToDo.classList.add('mini-div');
+                priorityToDo.id = "priority-todo";
 
-                    toDoDivList.appendChild(miniDiv);
-                    
-                });
+                toDoDivList.appendChild(titleToDo);
+                toDoDivList.appendChild(descriptionToDo)
+                toDoDivList.appendChild(dateToDo)
+                toDoDivList.appendChild(priorityToDo);
+
 
                 document.querySelector("#new-todo").appendChild(toDoDivList);
 
@@ -111,5 +121,6 @@ let addToDo = (() => {
     return {addToDoButton, submitToDo, noValueError}
 
 })();
+
 
 export { addToDo }

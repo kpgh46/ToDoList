@@ -137,13 +137,8 @@ let addToDo = (() => {
                 
                 if (checkDivExists(currentDataId)){
                     addDiv(currentDataId,toDoDivList);
-                } else {
-                    let newWrapper = document.createElement('div');
-                    newWrapper.setAttribute("data-id", currentDataId);
-                    newWrapper.classList.add('div-wrapper');
-                    newWrapper.appendChild(toDoDivList);
-                    document.querySelector("#new-todo").appendChild(newWrapper);
                 }
+               
                 
                 document.querySelector("#new-todo-div").remove();
                 document.querySelector("#add-project-button").disabled = false;

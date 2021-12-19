@@ -67,6 +67,13 @@ let addProject = (() => {
                     projectDiv.classList.add('project-entry');
                     newProject.appendChild(projectDiv);
 
+                    //create ToDo wrapper
+                    let newWrapper = document.createElement('div');
+                    newWrapper.setAttribute("data-id", `${projectCount}`);
+                    newWrapper.classList.add('div-wrapper');
+                    document.querySelector("#new-todo").appendChild(newWrapper);
+                    
+
                     //create delete button
                     let projectDelBtn = document.createElement('button');
                     projectDelBtn.classList.add('del-button');

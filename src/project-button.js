@@ -80,13 +80,13 @@ let addProject = (() => {
 
                     projectCount++;
                     currentProjectCount++;
-                    console.log(currentProjectCount);
+                    
 
                     document.querySelector("#add-todo-button").disabled = false;
                 
                 }
         }
-        addToDo(currentProjectCount);
+        // addToDo(currentProjectCount);
     }
 
     let deleteProjectButton = (event) => {
@@ -108,6 +108,20 @@ let addProject = (() => {
             projectNodeList.forEach(node => node.classList.remove('active'));
 
             el.classList.add('active');
+
+            let dataId = document.querySelector(".active").getAttribute("data-id");
+            let newtodoChildren = document.querySelector("#new-todo").children;
+
+            if (newtodoChildren.length > 0){
+                for (let i = 0; i < newtodoChildren.length; i++) {
+                    if (newtodoChildren[i].dataset.id === dataId){
+                        let allDivWrappers = document.querySelectorAll(".div-wrapper");
+                        allDivWrappers.forEach(node => node.classList.remove('active-todo'))
+                        newtodoChildren[i].classList.add("active-todo");
+                    }
+                }
+            }
+        
 
         }
     }

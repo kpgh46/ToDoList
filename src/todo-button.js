@@ -1,4 +1,5 @@
 let dataId = 0;
+let newtodoChildren = document.querySelector("#new-todo").children;
 
 let addToDo = (() => {
 
@@ -55,7 +56,22 @@ let addToDo = (() => {
 
     }
 
-    let submitToDo = (event) => {
+        let checkDivExists = (id) => {
+  
+        for (let i = 0; i < newtodoChildren.length; i++){
+          if (newtodoChildren[i].dataset.id === id){
+            return true
+          }
+        }
+        }
+
+
+      let addDiv = (dataid,child) => {
+        let parent = document.querySelector(`.div-wrapper[data-id="${dataid}"]`);
+        parent.appendChild(child);
+      }
+
+        let submitToDo = (event) => {
 
         let el = event.target;
         
@@ -75,12 +91,20 @@ let addToDo = (() => {
                 let newToDo = (title,description,date, priority) => {
                     return {title, description, date, priority}
                 }
+
+                let currentDataId = document.querySelector(".active").getAttribute("data-id");
+                // let currentDataId2 = parseInt(currentDataId)
+
+               
                 
+
+                //create the actual div
                 let toDoDivList = document.createElement('div');
                 toDoDivList.classList.add("todo-entry");
 
                 let toDoObject = newToDo(title1,description2,date3,priority4);
-                
+
+                //----create the mini divs ------
                 let titleToDo = document.createElement("div");
                 titleToDo.textContent = toDoObject.title;
                 titleToDo.classList.add('mini-div')
@@ -100,17 +124,31 @@ let addToDo = (() => {
                 priorityToDo.textContent = `Priority: ${toDoObject.priority}`;
                 priorityToDo.classList.add('mini-div');
                 priorityToDo.id = "priority-todo";
+                //----create the mini divs ------
 
+                //append the mini divs to actual div
                 toDoDivList.appendChild(titleToDo);
                 toDoDivList.appendChild(descriptionToDo)
                 toDoDivList.appendChild(dateToDo)
                 toDoDivList.appendChild(priorityToDo);
-
-
-                document.querySelector("#new-todo").appendChild(toDoDivList);
-
+                
+                
+                //logic
+                
+                if (checkDivExists(currentDataId)){
+                    addDiv(currentDataId,toDoDivList);
+                } else {
+                    let newWrapper = document.createElement('div');
+                    newWrapper.setAttribute("data-id", currentDataId);
+                    newWrapper.classList.add('div-wrapper');
+                    newWrapper.appendChild(toDoDivList);
+                    document.querySelector("#new-todo").appendChild(newWrapper);
+                }
+                
                 document.querySelector("#new-todo-div").remove();
                 document.querySelector("#add-project-button").disabled = false;
+                
+                
             };
             
             

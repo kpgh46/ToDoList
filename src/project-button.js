@@ -77,6 +77,7 @@ let addProject = (() => {
                     //create delete button
                     let projectDelBtn = document.createElement('button');
                     projectDelBtn.classList.add('del-button');
+                    projectDelBtn.setAttribute("data-id", `${projectCount}`);
                     projectDelBtn.id = "project-del-button";
                     projectDelBtn.textContent = "X";    
                     projectDiv.appendChild(projectDelBtn);
@@ -100,6 +101,17 @@ let addProject = (() => {
         let el = event.target;
 
         if (el.id === 'project-del-button'){
+
+
+            let newtodoChildren = document.querySelector("#new-todo").children;
+            let dataId = el.getAttribute("data-id");
+            for (let i = 0; i < newtodoChildren.length; i++) {
+                console.log(dataId);
+                if (newtodoChildren[i].dataset.id === dataId){
+                    newtodoChildren[i].remove()
+                }
+            }
+
             el.parentElement.remove();
             currentProjectCount--
             disableToDo(currentProjectCount);

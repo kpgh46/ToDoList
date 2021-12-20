@@ -1,6 +1,7 @@
 let dataId = 0;
 let newtodoChildren = document.querySelector("#new-todo").children;
 
+
 let addToDo = (() => {
 
     let capitalize = (string) => {
@@ -44,19 +45,18 @@ let addToDo = (() => {
 
     //need to create timeout feature
     let noValueError = (parent) => {
-
         let errorMessage = document.createElement('div');
         errorMessage.classList.add("error-message");
         errorMessage.id = "todo-error";
         errorMessage.textContent = "Missing value";
-
+        
         parent.parentNode.insertBefore(errorMessage,parent);
 
-        // clearTimeout(errorMessage.remove(), 2000)
+        setTimeout(() => document.querySelector("#todo-error").remove(), 2000);
 
-    }
+        }
 
-        let checkDivExists = (id) => {
+    let checkDivExists = (id) => {
   
         for (let i = 0; i < newtodoChildren.length; i++){
           if (newtodoChildren[i].dataset.id === id){
@@ -78,13 +78,13 @@ let addToDo = (() => {
         if (el.id === "create-todo"){
 
             let title1 = document.querySelector("#title").value;
-            let test = document.querySelector("#title");
+            let errorMessageAbove = document.querySelector("#title");
             let description2 = document.querySelector("#description").value;
             let date3 = document.querySelector("#date").value;
             let priority4 = document.querySelector("#priority").value;
 
             if (title1 === '' || description2 === '' || date3 === '' || priority4 === ''){
-                noValueError(test);
+                noValueError(errorMessageAbove);
                 }
                 else{
 
@@ -93,11 +93,7 @@ let addToDo = (() => {
                 }
 
                 let currentDataId = document.querySelector(".active").getAttribute("data-id");
-                // let currentDataId2 = parseInt(currentDataId)
-
-               
-                
-
+            
                 //create the actual div
                 let toDoDivList = document.createElement('div');
                 toDoDivList.classList.add("todo-entry");
@@ -124,6 +120,13 @@ let addToDo = (() => {
                 priorityToDo.textContent = `Priority: ${toDoObject.priority}`;
                 priorityToDo.classList.add('mini-div');
                 priorityToDo.id = "priority-todo";
+
+                let deleteToDo = document.createElement("button");
+                deleteToDo.classList.add('del-button');
+                deleteToDo.setAttribute("data-id", currentDataId);
+                deleteToDo.id = "todo-delete-button";
+                deleteToDo.textContent = "X";
+
                 //----create the mini divs ------
 
                 //append the mini divs to actual div
@@ -131,6 +134,7 @@ let addToDo = (() => {
                 toDoDivList.appendChild(descriptionToDo)
                 toDoDivList.appendChild(dateToDo)
                 toDoDivList.appendChild(priorityToDo);
+                toDoDivList.appendChild(deleteToDo);
                 
                 
                 //logic

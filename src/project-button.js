@@ -94,7 +94,7 @@ let addProject = (() => {
                 
                 }
         }
-        // addToDo(currentProjectCount);
+        
     }
 
     let deleteProjectButton = (event) => {
@@ -144,9 +144,6 @@ let addProject = (() => {
 
         }
     }
-
-
-
 
 
     return {addProjectButton, clickSubmitButton, deleteProjectButton, selectProject, disableToDo}

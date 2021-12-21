@@ -14,3 +14,4 @@ document.addEventListener("click", addProject.deleteProjectButton);
 document.addEventListener("click", addProject.selectProject);
 addToDoBtn.addEventListener("click", addToDo.addToDoButton);
 document.addEventListener("click", addToDo.submitToDo);
+document.addEventListener("click", addToDo.deleteToDoBtn);

@@ -155,7 +155,15 @@ let addToDo = (() => {
 
     }
 
-    return {addToDoButton, submitToDo, noValueError}
+    let deleteToDoBtn = (event) => {
+        let el = event.target;
+
+        if (el.id === 'todo-delete-button'){
+            el.parentNode.remove();
+        }
+    }
+
+    return {addToDoButton, submitToDo, noValueError, deleteToDoBtn}
 
 })();
 
